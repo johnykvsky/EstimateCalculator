@@ -8,9 +8,7 @@ php:
 sudo: false
 
 after_script:
-  - wget https://phar.phpunit.de/phpunit.phar
   - wget https://scrutinizer-ci.com/ocular.phar
   - wget https://github.com/phpspec/phpspec/releases/download/4.3.0/phpspec.phar
   - php ocular.phar code-coverage:upload --format=php-clover coverage.xml
   - php phpspec run
-  - phpunit --coverage-text --coverage-clover coverage.xml
