@@ -14,7 +14,7 @@ Simple estimation module, credits goes to Piotr Pasich and his [article](http://
 Via Composer
 
 ``` bash
-$ composer require johnykvsky/EstimateCalculator
+$ composer require johnykvsky/estimatecalculator
 ```
 
 ## Usage
