@@ -5,17 +5,17 @@ namespace johnykvsky\Utils;
 class EstimateCalculator
 {
     /**
-     * @var integer|float Optimistic calculation
+     * @var float Optimistic calculation
      */
     public $optimistic = 1;
 
     /**
-     * @var integer|float Pesimistic calculation
+     * @var float Pesimistic calculation
      */
     public $pesimistic = 1;
 
     /**
-     * @var integer|float Most likley calculation
+     * @var float Most likley calculation
      */
     public $mostLikely = 1;
 
