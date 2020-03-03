@@ -6,7 +6,7 @@ class EstimateCalculatorTest extends TestCase
 {
     public $estCalc;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->estCalc = new johnykvsky\Utils\EstimateCalculator(4, 16, 8);
     }

@@ -52,6 +52,13 @@ echo $calc->get90accuracy(); //90% accuracy
 $ composer test
 ```
 
+## Code checking
+
+``` bash
+$ composer phpstan
+$ composer phpstan-max
+```
+
 
 ## Security
 
