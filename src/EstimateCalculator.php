@@ -12,9 +12,9 @@ class EstimateCalculator
     public $optimistic = 1;
 
     /**
-     * @var float $pesimistic Pesimistic calculation
+     * @var float $pessimistic Pessimistic calculation
      */
-    public $pesimistic = 1;
+    public $pessimistic = 1;
 
     /**
      * @var float $mostLikely Most likley calculation
@@ -22,62 +22,40 @@ class EstimateCalculator
     public $mostLikely = 1;
 
     /**
-      * Constructor.
-      *
-      * @param float|int $optimistic
-      * @param float|int $pesimistic
-      * @param float|int $mostLikely
-      *
-      * @return void
-      */
-    public function __construct($optimistic = 1, $pesimistic = 1, $mostLikely = 1)
+     * Constructor.
+     *
+     * @param float|int $optimistic
+     * @param float|int $pessimistic
+     * @param float|int $mostLikely
+     *
+     * @return void
+     */
+    public function __construct($optimistic = 1, $pessimistic = 1, $mostLikely = 1)
     {
-        $this->setValuesForCalculation($optimistic, $pesimistic, $mostLikely);
+        $this->setValuesForCalculation($optimistic, $pessimistic, $mostLikely);
     }
 
     /**
-      * Set all values required for calculation.
-      *
-      * @param float|int $optimistic
-      * @param float|int $pesimistic
-      * @param float|int $mostLikely
-      *
-      * @return void
-      */
-    public function setValuesForCalculation($optimistic, $pesimistic, $mostLikely): void
+     * Set all values required for calculation.
+     *
+     * @param float|int $optimistic
+     * @param float|int $pessimistic
+     * @param float|int $mostLikely
+     *
+     * @return void
+     */
+    public function setValuesForCalculation($optimistic, $pessimistic, $mostLikely): void
     {
-        $this->optimistic = floatval($optimistic);
-        $this->pesimistic = floatval($pesimistic);
-        $this->mostLikely = floatval($mostLikely);
+        $this->optimistic = (float)$optimistic;
+        $this->pessimistic = (float)$pessimistic;
+        $this->mostLikely = (float)$mostLikely;
     }
 
     /**
-      * Get basic approximation.
-      *
-      * @return float
-      */
-    public function getApproximation(): float
-    {
-        $approximation = ($this->optimistic + 4 * $this->mostLikely + $this->pesimistic) / 6;
-        return round($approximation, 2, PHP_ROUND_HALF_UP);
-    }
-
-    /**
-      * Get standard deviation value.
-      *
-      * @return float
-      */
-    public function getStandardDeviation(): float
-    {
-        $sDeviation = ($this->optimistic + $this->pesimistic) / 6;
-        return round($sDeviation, 2, PHP_ROUND_HALF_UP);
-    }
-
-    /**
-      * Get 68% accuracy.
-      *
-      * @return float
-      */
+     * Get 68% accuracy.
+     *
+     * @return float
+     */
     public function get68accuracy(): float
     {
         $accuracy = $this->getApproximation() + $this->getStandardDeviation();
@@ -85,10 +63,32 @@ class EstimateCalculator
     }
 
     /**
-      * Get 90% accuracy.
-      *
-      * @return float
-      */
+     * Get basic approximation.
+     *
+     * @return float
+     */
+    public function getApproximation(): float
+    {
+        $approximation = ($this->optimistic + 4 * $this->mostLikely + $this->pessimistic) / 6;
+        return round($approximation, 2, PHP_ROUND_HALF_UP);
+    }
+
+    /**
+     * Get standard deviation value.
+     *
+     * @return float
+     */
+    public function getStandardDeviation(): float
+    {
+        $sDeviation = ($this->optimistic + $this->pessimistic) / 6;
+        return round($sDeviation, 2, PHP_ROUND_HALF_UP);
+    }
+
+    /**
+     * Get 90% accuracy.
+     *
+     * @return float
+     */
     public function get90accuracy(): float
     {
         $accuracy = $this->getApproximation() + 1.6 * $this->getStandardDeviation();
